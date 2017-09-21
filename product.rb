@@ -17,24 +17,23 @@ class Product
 		price + price * (vat / 100)
 	end
 
-	def << child
-		@children << child
-		self
-	end
-
 	def descendants product = self
 		product.children.map do |child|
 			[child, descendants(child)]
 		end.flatten
 	end
 
-	def to_s
-		name
-	end
-
 	def print_tree
 		puts self
 		print_sub_tree(self, 1)
+	end
+
+	def << child
+		@children << child
+		self
+	end
+	def to_s
+		name
 	end
 
 	private
