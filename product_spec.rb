@@ -57,4 +57,12 @@ describe Product do
 			@product.sub_products_price(true).must_equal 440
 		end
 	end
+
+	describe '#to_s' do
+		it 'creates a string with all important information about the product' do
+			# 'NAME | PRICE (self + components) | VAT PRICE (self + components)'
+			product2 = Product.new 'name2', 100, 10, @product
+			@product.to_s.must_equal 'name | 100.0 + 100.0 | 120.0 + 110.0'
+		end
+	end
 end
