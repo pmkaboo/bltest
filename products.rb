@@ -1,5 +1,3 @@
-require './product'
-
 class Products
 	attr_reader :collection
 
