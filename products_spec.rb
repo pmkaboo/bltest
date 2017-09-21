@@ -82,43 +82,35 @@ describe Products do
 		end
 
 		it 'returns collection of products with min price' do
-			results = @products.find(:min)
-			check_results(results, @prods1)
+			check_results(@products.find(:min), @prods1)
 		end
 
 		it 'returns collection of products with min vat price' do
-			results = @products.find(:min, vat: true)
-			check_results(results, @prods1, true)
+			check_results(@products.find(:min, vat: true), @prods1, true)
 		end
 
 		it 'returns collection of products with max price' do
-			results = @products.find(:max)
-			check_results(results, @prods1.reverse)
+			check_results(@products.find(:max), @prods1.reverse)
 		end
 
 		it 'returns collection of products with max vat price' do
-			results = @products.find(:max, vat: true)
-			check_results(results, @prods1.reverse, true)
+			check_results(@products.find(:max, vat: true), @prods1.reverse, true)
 		end
 
-		it 'returns collection of sub products with min price' do
-			results = @products.find(:min, product: @product1)
-			check_results(results, @prods2)
+		it 'returns collection of sub products with min price' do			
+			check_results(@products.find(:min, product: @product1), @prods2)
 		end
 
 		it 'returns collection of sub products with min vat price' do
-			results = @products.find(:min, vat: true, product: @product1)
-			check_results(results, @prods2, true)
+			check_results(@products.find(:min, vat: true, product: @product1), @prods2, true)
 		end
 
 		it 'returns collection of sub products with max price' do
-			results = @products.find(:max, product: @product1)
-			check_results(results, @prods2.reverse)
+			check_results(@products.find(:max, product: @product1), @prods2.reverse)
 		end
 
 		it 'returns collection of sub products with max vat price' do
-			results = @products.find(:max, vat: true, product: @product1)
-			check_results(results, @prods2.reverse, true)
+			check_results(@products.find(:max, vat: true, product: @product1), @prods2.reverse, true)
 		end
 	end
 end
