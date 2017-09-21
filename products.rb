@@ -1,3 +1,5 @@
+require './product'
+
 class Products
 	attr_reader :collection
 
@@ -12,5 +14,13 @@ class Products
 
 	def price_sum
 		@collection.map(&:price).sum
+	end
+
+	def price_min
+		@collection.group_by(&:price).min.last
+	end
+
+	def price_max
+		@collection.group_by(&:price).max.last
 	end
 end

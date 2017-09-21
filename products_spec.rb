@@ -7,6 +7,8 @@ describe Products do
 		@product1 = Product.new 'p1', 1
 		@product2 = Product.new 'p2', 2
 		@product3 = Product.new 'p3', 3
+		@product4 = Product.new 'p4', 1
+		@product5 = Product.new 'p5', 2
 		@products = Products.new @product1, @product2
 	end
 
@@ -31,6 +33,24 @@ describe Products do
 			@products.price_sum.must_equal 3
 			@products << @product3
 			@products.price_sum.must_equal 6
+		end
+	end
+
+	describe '#price_min' do
+		it 'returns collection of products with min price' do
+			@products << @product4
+			@products.price_min.must_include @product1
+			@products.price_min.must_include @product4
+			@products.price_min.wont_include @product2
+		end
+	end
+
+	describe '#price_max' do
+		it 'returns collection of products with max price' do
+			@products << @product5
+			@products.price_max.must_include @product2
+			@products.price_max.must_include @product5
+			@products.price_max.wont_include @product1
 		end
 	end
 end
