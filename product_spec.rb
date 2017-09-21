@@ -40,29 +40,12 @@ describe Product do
 		end
 	end
 
-	describe '#sub_products_price' do
-		it 'sums prices its descendants' do
+	describe '#descendants' do
+		it 'creates an array of all descendats of the product' do
 			product2 = Product.new 'name2', 100, 10, @product
-			product3 = Product.new 'name3', 100, 10, @product
-			product4 = Product.new 'name3', 100, 10, product2
-			product5 = Product.new 'name3', 100, 10, product4
-			@product.sub_products_price.must_equal 400
-		end
-
-		it 'sums vat prices of its descendants' do
-			product2 = Product.new 'name2', 100, 10, @product
-			product3 = Product.new 'name3', 100, 10, @product
-			product4 = Product.new 'name3', 100, 10, product2
-			product5 = Product.new 'name3', 100, 10, product4
-			@product.sub_products_price(true).must_equal 440
-		end
-	end
-
-	describe '#to_s' do
-		it 'creates a string with all important information about the product' do
-			# 'NAME | PRICE (self + components) | VAT PRICE (self + components)'
-			product2 = Product.new 'name2', 100, 10, @product
-			@product.to_s.must_equal 'name | 100.0 + 100.0 | 120.0 + 110.0'
+			product3 = Product.new 'name3', 100, 10, product2
+			@product.descendants.must_include product2
+			@product.descendants.must_include product3
 		end
 	end
 end
