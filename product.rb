@@ -15,9 +15,9 @@ class Product
 		price + price * (vat / 100)
 	end
 
-	def total_price vat = false
+	def sub_products_price vat = false
 		price_type = vat ? 'vat_price' : 'price'
-		send(price_type) + descendants_price(self, price_type)
+		descendants_price(self, price_type)
 	end
 
 	def << child

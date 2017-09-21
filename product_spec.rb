@@ -40,21 +40,21 @@ describe Product do
 		end
 	end
 
-	describe '#total_price' do
-		it 'sums prices of itself and its descendants' do
+	describe '#sub_products_price' do
+		it 'sums prices its descendants' do
 			product2 = Product.new 'name2', 100, 10, @product
 			product3 = Product.new 'name3', 100, 10, @product
 			product4 = Product.new 'name3', 100, 10, product2
 			product5 = Product.new 'name3', 100, 10, product4
-			@product.total_price.must_equal 500
+			@product.sub_products_price.must_equal 400
 		end
 
-		it 'sums vat prices of itself and its descendants' do
+		it 'sums vat prices of its descendants' do
 			product2 = Product.new 'name2', 100, 10, @product
 			product3 = Product.new 'name3', 100, 10, @product
 			product4 = Product.new 'name3', 100, 10, product2
 			product5 = Product.new 'name3', 100, 10, product4
-			@product.total_price(true).must_equal 560
+			@product.sub_products_price(true).must_equal 440
 		end
 	end
 end
