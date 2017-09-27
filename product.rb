@@ -1,3 +1,6 @@
+require 'bigdecimal'
+require 'bigdecimal/util'
+
 class Product
 	attr_accessor :name, :price, :vat
 	attr_reader :children
@@ -5,7 +8,7 @@ class Product
 
 	def initialize name, price, vat, parent = nil
 		@name = name
-		@price = price.to_f
+		@price = price.to_d
 		@vat = vat.to_f
 
 		@children = []
@@ -32,8 +35,10 @@ class Product
 		@children << child
 		self
 	end
+
 	def to_s
-		name
+		# regex truncate to always display two decimals
+		name + ', ' + (price.to_s('F') + '0')[/.*\..{2}/]
 	end
 
 	private
@@ -43,4 +48,5 @@ class Product
 			print_sub_tree(child, depth + 1)
 		end
 	end
+
 end
