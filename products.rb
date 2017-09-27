@@ -3,6 +3,7 @@ class Products
 
 	def initialize *products
 		@collection = products
+		@collection.flatten!
 	end
 
 	def << product
