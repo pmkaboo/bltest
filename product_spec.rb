@@ -24,9 +24,9 @@ describe Product do
 		end
 	end
 
-	describe '#vat_price' do
+	describe '#price_with_vat' do
 		it 'returns vat price of the product' do
-			@product.vat_price.must_equal 120
+			@product.price_with_vat.must_equal 120
 		end
 	end
 

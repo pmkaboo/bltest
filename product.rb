@@ -16,7 +16,7 @@ class Product
 		@parent = parent
 	end
 
-	def vat_price
+	def price_with_vat
 		price + price * (vat / 100)
 	end
 
